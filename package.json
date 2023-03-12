@@ -1,0 +1,22 @@
+{
+  "name": "cypress_fluxo_de_compra",
+  "version": "1.0.0",
+  "description": "Fluxo de compra",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marinagiaquinto/cypress_fluxo_de_compra.git"
+  },
+  "author": "Marina Giaquinto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marinagiaquinto/cypress_fluxo_de_compra/issues"
+  },
+  "homepage": "https://github.com/marinagiaquinto/cypress_fluxo_de_compra#readme",
+  "devDependencies": {
+    "cypress": "^12.2.0"
+  }
+}
