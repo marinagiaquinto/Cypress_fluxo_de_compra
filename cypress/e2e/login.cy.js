@@ -1,14 +1,12 @@
-describe('login', () => {
+describe('Login', () => {
 
-  it('Verificar pagina de login', () => {
+  it('Realizar login', () => {
 
     cy.visit('/')
-    cy.title().should('eq', 'Swag Labs')
+    cy.get('div[class="login_logo"]').should('have.text', 'Swag Labs')
 
-    cy.get('#user-name').type('standard_user')
-    cy.get('#password').type('secret_sauce')
-    cy.get('#login-button').click()
-  
+    cy.realizarLogin('standard_user', 'secret_sauce')
+      
   })
 
 })

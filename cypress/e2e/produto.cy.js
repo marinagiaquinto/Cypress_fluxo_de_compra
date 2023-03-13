@@ -1,58 +1,29 @@
-describe('produto', () => {
+describe('Pagina de Produto', () => {
 
-  it('verificar pagina de produto', () => {
-      
-      cy.wait(2000)
-      cy.visit('/')
-      cy.get('#user-name').type('standard_user')
-      cy.get('#password').type('secret_sauce')
-      cy.get('#login-button').click()
+    it('adicionar produtos ao carrinho', () => {
 
-      cy.get('span[class="title"]').should('have.text', 'Products')
+        cy.realizarLogin('standard_user', 'secret_sauce')
+        cy.get('span[class="title"]').should('have.text', 'Products')
   
-  })
+        cy.iconeCarrinho()
+        cy.contagemItensCarrinho('not.be.NaN')
 
-  it('selecionar produtos', () => {
+        cy.botaoAddCarrinho('#add-to-cart-sauce-labs-backpack')   
+        cy.get('#add-to-cart-sauce-labs-backpack').click()
+  
+        cy.botaoRemoverCarrinho('#remove-sauce-labs-backpack')
+        cy.contagemItensCarrinho('have.text', '1')
 
-    cy.wait(2000)
-      
-    cy.visit('/')
-    cy.get('#user-name').type('standard_user')
-    cy.get('#password').type('secret_sauce')
-    cy.get('#login-button').click()
-
-    cy.get('#shopping_cart_container').should('be.visible')
-    cy.get('span[class="shopping_cart_badge"]').should('not.be.NaN')
-
-    cy.get('#add-to-cart-sauce-labs-backpack')
-      .should('have.text', 'Add to cart')
-      .should('have.css', 'border', '1px solid rgb(19, 35, 34)')
-      .should('have.css', 'color', 'rgb(19, 35, 34)')
-          
-    cy.get('#add-to-cart-sauce-labs-backpack').click()
-
-    cy.get('#remove-sauce-labs-backpack')
-      .should('have.text', 'Remove')
-      .should('have.css', 'border', '1px solid rgb(226, 35, 26)')
-      .should('have.css', 'color', 'rgb(226, 35, 26)')
-
-    cy.get('span[class="shopping_cart_badge"]').should('have.text', '1')
-
-    cy.get('#add-to-cart-sauce-labs-fleece-jacket')
-      .should('have.text', 'Add to cart')
-      .should('have.css', 'border', '1px solid rgb(19, 35, 34)')
-      .should('have.css', 'color', 'rgb(19, 35, 34)')
-          
-    cy.get('#add-to-cart-sauce-labs-fleece-jacket').click()
-
-
-    cy.get('#remove-sauce-labs-fleece-jacket')
-      .should('have.text', 'Remove')
-      .should('have.css', 'border', '1px solid rgb(226, 35, 26)')
-      .should('have.css', 'color', 'rgb(226, 35, 26)')
-      
-    cy.get('span[class="shopping_cart_badge"]').should('have.text', '2')
-
+        
+        cy.botaoAddCarrinho('#add-to-cart-sauce-labs-fleece-jacket')  
+        cy.get('#add-to-cart-sauce-labs-fleece-jacket').click()
+  
+        cy.botaoRemoverCarrinho('#remove-sauce-labs-fleece-jacket')
+        cy.contagemItensCarrinho('have.text', '2')
+        
+  
+        cy.iconeCarrinho().click()
+  
   })
 
 })
